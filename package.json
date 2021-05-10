@@ -1,0 +1,11 @@
+{
+  "name": "whatsapp-clone-api",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "yarn run server.js"
+  },
+  "repository": "git@github.com:CaiaCC/whatsapp-clone-api.git",
+  "author": "Caia Chuang <caiachuang@gmail.com>",
+  "license": "MIT"
+}
