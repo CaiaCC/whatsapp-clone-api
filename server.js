@@ -16,7 +16,17 @@ mongoose.connect(connectionURL, {
     useUnifiedTopology: true,
 });
 
-app.get("/", (req, res) => res.status(200).send("YO WHAT UP"));
+app.get("/", (req, res) => res.status(200).send("server is running!"));
+
+app.get("/messages/sync", (req, res) => {
+    Messages.find((err, data) => {
+        if (err) {
+            res.status(500).send(err);
+        } else {
+            res.status(200).send(data);
+        }
+    })
+});
 
 app.post("/messages/new", (req, res) => {
     const dbMessage = req.body;
@@ -26,7 +36,6 @@ app.post("/messages/new", (req, res) => {
             res.status(500).send(err);
         } else {
             res.status(201).send(data);
-            console.log(data)
         }
     });
 });
