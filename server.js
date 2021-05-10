@@ -5,6 +5,9 @@ import Messages from "./dbMessages.js";
 
 const app = express();
 const port = process.env.PORT || 9000;
+const connectionURL = "mongodb+srv://admin:BOQd4Im50aCbRufc@cluster0.7epvq.mongodb.net/whatsappDb?retryWrites=true&w=majority";
+
+app.use(express.json());
 
 const pusher = new Pusher({
     appId: "1201741",
@@ -14,16 +17,24 @@ const pusher = new Pusher({
     useTLS: true,
 });
 
-app.use(express.json());
-
-const connectionURL =
-    "mongodb+srv://admin:BOQd4Im50aCbRufc@cluster0.7epvq.mongodb.net/whatsappDb?retryWrites=true&w=majority";
-
 mongoose.connect(connectionURL, {
     useCreateIndex: true,
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
+
+const db = mongoose.connection;
+
+db.once('open', () => {
+    console.log("db is connected");
+
+    const msgCollection = db.collection("messagecontents");
+    const changeStream = msgCollection.watch();
+
+    changeStream.on('change', change => {
+        console.log("A change occured: ", change)
+    })
+})
 
 app.get("/", (req, res) => res.status(200).send("server is running!"));
 
