@@ -2,8 +2,9 @@
   "name": "whatsapp-clone-api",
   "version": "1.0.0",
   "main": "server.js",
+  "type": "module",
   "scripts": {
-    "start": "yarn run server.js"
+    "start": "node server.js"
   },
   "repository": "git@github.com:CaiaCC/whatsapp-clone-api.git",
   "author": "Caia Chuang <caiachuang@gmail.com>",
