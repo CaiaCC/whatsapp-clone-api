@@ -7,5 +7,9 @@
   },
   "repository": "git@github.com:CaiaCC/whatsapp-clone-api.git",
   "author": "Caia Chuang <caiachuang@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.12.7"
+  }
 }
